@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link defer rel="stylesheet" href="script.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Youtube Downloader</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    body {
+       background:-webkit-radial-gradient(bottom, #f10606, #000000);
+        height: 100vh;
+    }
+    
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 60px;
+        background-color: #fff;
+        align-items: center;
+    }
+    
+    header h1 {
+        color: #444;
+        border-bottom: 3px solid #ee4b4b;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+    
+    ul li a {
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: bold;
+        color: #444;
+        border-bottom: 3px solid #ee4b4b;
+    }
+    
+    section {
+        width: 800px;
+        height: 400px;
+        background-color: #fff;
+        margin-top: 10vh;
+        margin-left: 20vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid #666;
+box-shadow:0px 10px 15px rgba(0,0,0,0.6);
+    }
+    
+    section h1 {
+        color: red;
+        padding: 30px;
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+    
+    section .link-container,
+    .format-container,
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        width: 500px;
+    }
+    
+    section .link-container label,
+    .format-container label {
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #444;
+    }
+    
+    section .link-container input,
+    .format-container select {
+        outline: none;
+        height: 35px;
+        border-radius: 35px;
+        padding: 0 10px;
+        border: 2px solid #666666;
+        font-size: 14px;
+    }
+    
+    .btn{
+        height: 50px;
+        border-radius: 5px;
+        font-size: 20px;
+        border: none;
+        color: #fff;
+        background-color: seagreen;
+        letter-spacing: 1px;
+        cursor: pointer;
+    }
+    
+    @media only screen and (max-width: 850px) {
+        section {
+            width: 500px;
+        }
+        section .link-container,
+        .format-container,
+        .button-container {
+            width: 300px;
+        }
+    }
+    
+    @media only screen and (max-width: 550px) {
+        section {
+            width: 350px;
+            height: 450px;
+        }
+        section .link-container,
+        .format-container,
+        .button-container {
+            width: 300px;
+        }
+    }
+img{
+width:20%;
+
+
+}
+</style>
+
+<body>
+
+    <header>
+        <img src="ytvideo.png">
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+        </ul>
+    </header>
+
+
+    <section>
+        <h1>Youtube Downloader</h1>
+        <div class="link-container">
+            <label for="">Video Link</label>
+            <input type="text" class="link" name="link" placeholder="Enter Video Link" required>
+        </div>
+        <div class="format-container">
+            <label for="">Format</label>
+            <select class="format" required>
+            <option selected disabled> Select Video Format</option>
+            <option value="mp3">Mp3</option>
+            <option value="mp4a">144</option>
+            <option value="360">360</option>
+            <option value="480">480</option>
+            <option value="720">720</option>
+            <option value="1080">1080</option>
+            <option value="4k">4k</option>
+            <option value="8k">8k</option>
+
+
+        </select>
+        </div>
+        <div class="button-container">
+            <button class="btn" type="submit">
+           Download
+        </button>
+        </div>
+    </section>
+    <script>
+        $(".btn").click(function() {
+            var link = $(".link").val();
+            var format = $(".format").children("option:selected").val();
+            var src = "" + link + "=" + format + "";
+            // children("option:selected")
+            download(link, format);
+
+        });
+
+        function download(link, format) {
+            $('.button-container')
+                .html('<iframe style="height: 50px; border: none; overflow: hidden;" src="https://loader.to/api/button/?url=' + link + '&f=' + format + '"></iframe>');
+        }
+    </script>
+
+
+</body>
+
+</html>
